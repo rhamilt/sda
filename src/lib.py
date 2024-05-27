@@ -8,10 +8,9 @@ def kSongs(tracks: list[Song], k: int):
         songs[(track.name, track.artist)] += msToMin(track.duration)
 
     songs = sorted(songs.items(), key=lambda item: item[1], reverse=True)
-    data = defaultdict(list)
+    data = []
     for i in range(0, k):
-        data["keys"].append(songs[i][0][0] + "*,*" + songs[i][0][1])
-        data["totals"].append(songs[i][1])
+        data.append({"key": (songs[i][0][0] + " by " + songs[i][0][1]), "total": songs[i][1]})
 
     return data
 
@@ -22,10 +21,9 @@ def kArtists(tracks: list[Song], k: int):
         artists[track.artist] += msToMin(track.duration)
 
     artists = sorted(artists.items(), key=lambda item: item[1], reverse=True)
-    data = defaultdict(list)
+    data = []
     for i in range(0, k):
-        data["keys"].append(artists[i][0])
-        data["totals"].append(artists[i][1])
+        data.append({"key": artists[i][0], "total": artists[i][1]})
 
     return data
 
@@ -37,9 +35,9 @@ def kHours(tracks: list[Song], k: int):
 
     hours = sorted(hours.items(), key=lambda item: item[1], reverse=True)
     data = defaultdict(list)
+    data = []
     for i in range(0, k):
-        data["keys"].append(hours[i][0])
-        data["totals"].append(hours[i][1])
+        data.append({"key": hours[i][0], "total": hours[i][1]})
 
     return data
 
@@ -51,9 +49,9 @@ def kMonths(tracks: list[Song], k: int):
 
     months = sorted(months.items(), key=lambda item: item[1], reverse=True)
     data = defaultdict(list)
+    data = []
     for i in range(0, k):
-        data["keys"].append(months[i][0])
-        data["totals"].append(months[i][1])
+        data.append({"key": months[i][0], "total": months[i][1]})
 
     return data
 

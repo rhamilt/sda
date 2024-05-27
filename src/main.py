@@ -27,13 +27,13 @@ def get_user_data(user):
     return jsonify({"tracks": tracks}), 404
 
 
-@app.route("/<user>/topK", methods=["GET"])
+@app.route("/<user>/topK", methods=["POST"])
 def getTopK(user):
     if not os.path.exists(os.path.join("data", user)):
         return jsonify({"message": "The user does not exist!"}), 404
 
     if request.json:
-        k = request.json.get("k")
+        k = int(request.json.get("k"))
         t = request.json.get("type")
         limit = request.json.get("limit")
     else:
@@ -42,14 +42,14 @@ def getTopK(user):
     tracks = get_tracks(user, limit)
 
     match t:
-        case "songs":
-            return jsonify(lib.kSongs(tracks, k)), 200
-        case "artists":
-            return jsonify(lib.kArtists(tracks, k)), 200
-        case "hours":
-            return jsonify(lib.kHours(tracks, k)), 200
-        case "months":
-            return jsonify(lib.kMonths(tracks, k)), 200
+        case "Song":
+            return jsonify({"data": lib.kSongs(tracks, k)}), 200
+        case "Artist":
+            return jsonify({"data": lib.kArtists(tracks, k)}), 200
+        case "Hour":
+            return jsonify({"data": lib.kHours(tracks, k)}), 200
+        case "Month":
+            return jsonify({"data": lib.kMonths(tracks, k)}), 200
         case _:
             return jsonify({"message": "Improper request"}), 400
 
