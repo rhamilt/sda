@@ -4,6 +4,7 @@ import TopKSelector from './TopKSelector'
 
 const ModeSelector = ({ user, limit, onSelect }) => {
   const [analysisType, setAnalysisType] = useState("TopK")
+
   return (
     <>
       <div>

@@ -1,5 +1,4 @@
 const Display = ({ data }) => {
-  console.log(data)
   return (
     <table>
       <thead>
