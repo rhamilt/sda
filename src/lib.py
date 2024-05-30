@@ -102,6 +102,35 @@ def streakArtist(tracks: list[Song], k: int):
 
     return data
 
+
+def skipSong(tracks: list[Song], k: int):   
+    songs = defaultdict(int)
+    for track in tracks:
+        if skip(track):
+            songs[(track.name, track.artist)] += 1
+
+    skips = sorted(songs.items(), key=lambda item: item[1], reverse=True)
+    data = []
+    for i in range(0, k):
+        data.append({"key": (skips[i][0][0] + " by " + skips[i][0][1]), "total": skips[i][1]})
+
+    return data
+
+
+def skipArtist(tracks: list[Song], k: int):   
+    artists = defaultdict(int)
+    for track in tracks:
+        if skip(track):
+            artists[track.artist] += 1
+
+    skips = sorted(artists.items(), key=lambda item: item[1], reverse=True)
+    data = []
+    for i in range(0, k):
+        data.append({"key": skips[i][0], "total": skips[i][1]})
+
+    return data
+
+
 # UTILS
 def msToMin(ms: int) -> int:
     return int(ms / 1000 / 60)
