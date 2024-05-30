@@ -74,7 +74,7 @@ def streakSong(tracks: list[Song], k: int):
     streaks = sorted(songs.items(), key=lambda item: item[1], reverse=True)
     data = []
     for i in range(0, k):
-        data.append({"key": streaks[i][0], "total": streaks[i][1]})
+        data.append({"key": (streaks[i][0][0] + " by " + streaks[i][0][1]), "total": streaks[i][1]})
 
     return data
 
