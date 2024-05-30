@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const StreakSelector = ({ user, limit, onSelect }) => {
+const SkipSelector = ({ user, limit, onSelect }) => {
   const [k, setK] = useState("1")
   const [type, setType] = useState("Song")
 
@@ -13,7 +13,7 @@ const StreakSelector = ({ user, limit, onSelect }) => {
       limit
     }
 
-    const url=`http://127.0.0.1:5000/${user}/streak`
+    const url=`http://127.0.0.1:5000/${user}/skip`
     const options = {
       method: "POST",
       headers: {
@@ -59,4 +59,4 @@ const StreakSelector = ({ user, limit, onSelect }) => {
   )
 }
 
-export default StreakSelector
+export default SkipSelector

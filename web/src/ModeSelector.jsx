@@ -2,6 +2,7 @@ import { useState } from "react"
 
 import TopKSelector from './TopKSelector'
 import StreakSelector from './StreakSelector'
+import SkipSelector from './SkipSelector'
 
 const ModeSelector = ({ user, limit, onSelect }) => {
   const [analysisType, setAnalysisType] = useState("TopK")
@@ -15,6 +16,7 @@ const ModeSelector = ({ user, limit, onSelect }) => {
           onChange={(e) => setAnalysisType(e.target.value)}>
           <option value="TopK">Top K</option>
           <option value="Streak">Streak</option>
+          <option value="Skip">Skip</option>
         </select>
       </div>
       <hr/>
@@ -24,6 +26,11 @@ const ModeSelector = ({ user, limit, onSelect }) => {
                                     limit={limit} />}
 
       {analysisType === "Streak" && <StreakSelector
+                                    onSelect={onSelect}
+                                    user={user}
+                                    limit={limit} />}
+
+      {analysisType === "Skip" && <SkipSelector
                                     onSelect={onSelect}
                                     user={user}
                                     limit={limit} />}
